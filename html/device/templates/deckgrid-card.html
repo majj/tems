@@ -1,0 +1,31 @@
+    <div class="photo" style="border:2px solid {{card.typecolor}}; height:280px" >
+        <div class="photo-index" data-ng-if="card.showIndex">
+            <span class="memuItemn" >修改设备状态</span><br><br>
+            <div class="btn-group" ng-init="cgcardstatus=card.status">
+              <div ng-class="{'labdefine':true,'labcol1':cgcardstatus=='故障'}" ng-click="cgcardstatus='故障';cgcardcolor='#FF4136';cgcardcolor2='#FF4136';">故障</div>
+              <div ng-class="{'labdefine':true,'labcol2':cgcardstatus=='空闲'}" ng-click="cgcardstatus='空闲';cgcardcolor='#CD8500';cgcardcolor2='#CD8500';">空闲</div>
+              <div ng-class="{'labdefine':true,'labcol3':cgcardstatus=='维保'}" ng-click="cgcardstatus='维保';cgcardcolor='#B10DC9';cgcardcolor2='#B10DC9';">维保</div>
+              <div ng-class="{'labdefine':true,'labcol4':cgcardstatus=='试验中'}"  ng-click="cgcardstatus='试验中';cgcardcolor='#2ECC40';cgcardcolor2='#2ECC40';">试验中</div>    
+            </div>
+            <br><br>
+            <input type="button" style="background:#AAAAAA" ng-show="card.status==cgcardstatus" ng-click="card.showIndex = !card.showIndex" value="退 出"></input> 
+            <input type="button" style="background:#AAAAAA" ng-show="card.status!==cgcardstatus" ng-click="card.status=cgcardstatus;card.runtime='0:0';card.color=cgcardcolor;card.color2=cgcardcolor2;card.showIndex = !card.showIndex" value="更 改"></input> 
+        </div>
+        <div class="photo-wrapper" data-ng-if="!card.showIndex">    
+            <div style="position:relative">
+            <span class="card-name"> &nbsp;{{card.id}}</span><span  class="memuItem">]</span><span class="memuItem" data-ng-click="card.showIndex = !card.showIndex">修改状态</span><span class="memuItem">|</span><span  class="memuItem"  ng-click="swdetailshow(card)">设备详情</span><span class="memuItem">[</span>
+            </div>
+            <img ng-if="card.status =='试验中'" data-ng-src="{{card.statsrc}}" class="animation-fade" data-imageloaded data-loadedclass="animation-faded">
+            <img ng-if="card.status !=='试验中'" data-ng-src="{{card.src}}" class="animation-fade" data-imageloaded data-loadedclass="animation-faded">            
+        </div>
+        <div class="photo-description" data-ng-if="!card.showIndex">
+            <span class="card-name">设备名：{{card.name}}</span> 
+            <br/>
+            <div style="background-color:{{card.color2}};text-align:left;height:60px" >【{{card.task}}】
+            </div>
+            <div style="background-color:{{card.color}};text-align:center;">
+            {{card.status}} [{{card.runtime}}] 
+            </div>
+        </div>
+    </div>
+

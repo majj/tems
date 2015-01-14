@@ -1,0 +1,15 @@
+﻿
+ <div  ng-controller="multipleDatePicker">
+    <br>
+    <div style="position:absolute; left:20px; top:60px">
+    	<span>【休息日设定，被选中有色块的为休息日】</span>
+    </div>
+    <div  style="position:absolute; left:20px; top:80px">
+      <multiple-date-picker month="month" days="days" sunday-first-day="true"  days-selected="selectedDays" day-click="logInfos" days-off="oneDayOff"/>
+    </div>
+    <div style="position:absolute; left:20px; top:380px;width:400px">
+    	<span>【工作日时间段定义】</span><br>
+    	<span>开始时间：</span><input type="text" style="width:60px" placeholder="08:15"/>
+    	<span>结束时间：</span><input type="text" style="width:60px" placeholder="17:00"/>
+    </div>
+ </div>

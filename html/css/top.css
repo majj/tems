@@ -1,0 +1,60 @@
+* {
+	margin: 0px; padding: 0px;
+}
+img {
+	border: currentColor;
+}
+a {
+	color: rgb(0, 0, 0); text-decoration: none;
+}
+li {
+	list-style-type: none;
+}
+.clear {
+	clear: both;
+}
+body {
+	background: url("../img/body-bg.gif") repeat-x left top;
+}
+.box {
+	margin: 0px auto; width: 965px;
+}
+.header {
+	height: 133px; font-family: "Î¢ÈíÑÅºÚ Microsoft YaHei"; margin-top: 54px;
+}
+.header ol li {
+	float: left;
+}
+.header ol .new_nav {
+	background: url("../images/php_bg_back.gif") no-repeat left 1px; width: 111px; height: 129px; text-align: center; line-height: 18px;
+}
+.header ol .new_nav a {
+	height: 66px; color: rgb(84, 75, 75); padding-top: 55px; font-family: "Microsoft YaHei"; font-size: 15px; display: block;
+}
+.header ol .new_nav a:hover {
+	background: url("../images/nav02.gif") no-repeat 2px 1px; color: rgb(255, 255, 255);
+}
+.header ol .new_nav span {
+	height: 49px; color: rgb(84, 75, 75); font-family: Arial, Helvetica, sans-serif; font-size: 9px; display: block;
+}
+.header ol .new_nav a:hover span {
+	color: rgb(255, 255, 255);
+}
+.banner {
+	margin: 0px auto; width: 949px; height: 264px; text-align: center;
+}
+.banner img {
+	width: 949px; height: 264px;
+}
+.index-jiaodian {
+	width: 949px; height: 264px; overflow: hidden; position: relative; z-index: 2;
+}
+.index-jiaodian-num {
+	left: 8px; top: 354px; width: 80%; position: absolute; z-index: 3;
+}
+.index-jiaodian-num a {
+	background: rgb(50, 50, 50); width: 20px; height: 20px; text-align: center; color: rgb(255, 255, 255); line-height: 20px; font-size: 12px; font-weight: bold; margin-right: 3px; float: left; display: inline; cursor: pointer;
+}
+.index-jiaodian-show img {
+	width: 949px; height: 264px;
+}

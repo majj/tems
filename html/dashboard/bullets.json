@@ -1,0 +1,12 @@
+﻿[
+  {"title":"环境试验室","subtitle":"环境高低温舱","ranges":[85,90,100],"measures":[90,95],"markers":[95]},
+  {"title":"环境试验室","subtitle":"环境高低温转鼓","ranges":[85,90,100],"measures":[90,95],"markers":[95]},
+  {"title":"环境试验室","subtitle":"排放分析仪","ranges":[90,95,100],"measures":[90,95],"markers":[95]},
+  {"title":"环境试验室","subtitle":"环境常温转鼓","ranges":[85,90,100],"measures":[90,95],"markers":[95]},
+  {"title":"高温试验室","subtitle":"四驱高温转鼓","ranges":[90,95,100],"measures":[90,95],"markers":[95]},
+  {"title":"高温试验室","subtitle":"四驱高温舱","ranges":[90,95,100],"measures":[90,95],"markers":[95]},
+  {"title":"耐久试验室","subtitle":"耐久转鼓#1","ranges":[80,90,100],"measures":[90,95],"markers":[95]},
+  {"title":"耐久试验室","subtitle":"耐久转鼓#2","ranges":[80,90,100],"measures":[90,95],"markers":[95]},
+  {"title":"耐久试验室","subtitle":"耐久转鼓#3","ranges":[80,90,100],"measures":[90,95],"markers":[95]},
+  {"title":"重鼓试验室","subtitle":"重型转鼓","ranges":[75,85,100],"measures":[90,95],"markers":[95]}
+]

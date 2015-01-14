@@ -1,0 +1,154 @@
+﻿
+<br>
+<div ng-controller="kpireprotctrl" class="maincontent" >
+    <style>
+        .inputclass {
+            text-align: center;
+            border:1px solid; 
+            width:40px; 
+            border-color:#CCC #EEE #EEE #CCC;
+            background: #F5F5F5;
+        }
+    </style>
+    <table class="table table-bordered table-hover" >
+      <tr>
+        <td colspan="2" rowspan="2" class="text-center"> 试验室设备</td>
+        <td colspan="3" class="text-center">设备利用率</td>
+        <td colspan="3" class="text-center">设备完好率</td>
+        <td colspan="3" class="text-center">设备平均利用率</td>
+        <td colspan="3" class="text-center">设备平均完后率</td>
+      </tr>
+      <tr>
+        <td>最高</td>
+        <td>目标</td>
+        <td>最低</td>
+        <td>最高</td>
+        <td>目标</td>
+        <td>最低</td>
+        <td>最高</td>
+        <td>目标</td>
+        <td>最低</td>
+        <td>最高</td>
+        <td>目标</td>
+        <td>最低</td>
+      </tr>
+      <tr>
+        <td  rowspan="4">环境试验室</td>
+        <td >环境高低温舱</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm001[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm001[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm001[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm001[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm001[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm001[5]" /></td>
+        <td rowspan="4"><input type="text" class="inputclass"  ng-model="vm.labdate.lab1[0]" /></td>
+        <td rowspan="4"><input type="text" class="inputclass"  ng-model="vm.labdate.lab1[1]" /></td>
+        <td rowspan="4"><input type="text" class="inputclass"  ng-model="vm.labdate.lab1[2]" /></td>
+        <td rowspan="4" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab1[3]" /></td>
+        <td rowspan="4" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab1[4]" /></td>
+        <td rowspan="4" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab1[5]" /></td>
+      </tr>
+      <tr>
+        <td>环境高低温转鼓</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm002[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm002[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm002[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm002[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm002[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm002[5]" /></td>
+      </tr>
+      <tr>
+        <td>环境常温转鼓</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm003[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm003[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm003[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm003[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm003[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm003[5]" /></td>
+      </tr>
+      <tr>
+        <td>环境排放分析仪</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm004[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm004[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm004[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm004[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm004[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm004[5]" /></td>
+      </tr>
+      <tr>
+        <td  rowspan="2">高温试验室</td>
+        <td >四驱高温舱</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm005[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm005[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm005[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm005[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm005[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm005[5]" /></td>
+        <td rowspan="2"><input type="text" class="inputclass"  ng-model="vm.labdate.lab2[0]" /></td>
+        <td rowspan="2"><input type="text" class="inputclass"  ng-model="vm.labdate.lab2[1]" /></td>
+        <td rowspan="2"><input type="text" class="inputclass"  ng-model="vm.labdate.lab2[2]" /></td>
+        <td rowspan="2" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab2[3]" /></td>
+        <td rowspan="2" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab2[4]" /></td>
+        <td rowspan="2" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab2[5]" /></td>
+      </tr>
+      <tr>
+        <td>四驱高温转鼓</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm006[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm006[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm006[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm006[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm006[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm006[5]" /></td>
+      </tr>
+      <tr>
+        <td rowspan="3">耐久试验室</td>
+        <td>耐久转鼓#1</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm007[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm007[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm007[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm007[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm007[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm007[5]" /></td>
+        <td rowspan="3"><input type="text" class="inputclass"  ng-model="vm.labdate.lab3[0]" /></td>
+        <td rowspan="3"><input type="text" class="inputclass"  ng-model="vm.labdate.lab3[1]" /></td>
+        <td rowspan="3"><input type="text" class="inputclass"  ng-model="vm.labdate.lab3[2]" /></td>
+        <td rowspan="3" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab3[3]" /></td>
+        <td rowspan="3" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab3[4]" /></td>
+        <td rowspan="3" ><input type="text" class="inputclass"  ng-model="vm.labdate.lab3[5]" /></td>
+      </tr>
+      <tr>
+        <td>耐久转鼓#2</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm008[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm008[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm008[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm008[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm008[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm008[5]" /></td>
+      </tr>
+      <tr>
+        <td>耐久转鼓#3</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm009[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm009[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm009[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm009[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm009[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm009[5]" /></td>
+      </tr>
+      <tr>
+        <td>重鼓试验室</td>
+        <td>重型转鼓#1</td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm010[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm010[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm010[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm010[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm010[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.eqmdate.eqm010[5]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.labdate.lab4[0]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.labdate.lab4[1]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.labdate.lab4[2]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.labdate.lab4[3]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.labdate.lab4[4]" /></td>
+        <td><input type="text" class="inputclass"  ng-model="vm.labdate.lab4[5]" /></td>
+      </tr>
+    </table>
+</div>

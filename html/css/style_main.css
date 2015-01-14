@@ -1,0 +1,17 @@
+/*.forlogin {color: #FFFFFF}
+ */
+.titilename {
+	color: #436EEE;
+	font-size: 36px;
+	font-family: "新宋体";
+}
+
+body {
+	background-color: #CCCCCC;
+}
+
+.bgimg {
+	filter:alpha(opacity=80);       /* IE */
+	-moz-opacity:0.8;              /* Moz + FF */
+	opacity: 0.8;                    /* 支持CSS3的浏览器（FF 1.5也支持）*/
+}

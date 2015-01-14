@@ -1,0 +1,144 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+margin:0px;
+background-color:#d7d7d7;
+}
+
+a:link{
+text-decoration:none ; 
+color:#999999 ;
+}
+
+a:visited {
+text-decoration:none;
+color:#999999;
+}
+
+a:hover {
+text-decoration:underline ; 
+color:#999999;
+}
+
+a:active {
+text-decoration:underline; 
+color:#999999;
+} 
+
+p {
+font-family:"ËÎÌå";
+font-size:14px;
+color:#999999;
+text-indent:30px;
+margin:0;
+}
+
+#zhanwei {
+height:100px;
+}
+
+#login {
+background-image:url(../images/bg.jpg);
+width:720px;
+height:386px;
+margin:0 auto;
+}
+
+#menu {
+width:715px;
+height:382px;
+position:relative;
+top:2px;
+left:3px;
+}
+
+#bg {
+width:715px;
+height:317px;
+position:relative;
+top:32px;
+left:0px;
+overflow:hidden;
+}
+
+#logo {
+width:205px;
+height:40px;
+margin-top:30px;
+margin-left:30px;
+margin-bottom:30px;
+}
+
+.logininput {
+margin-top:2px;
+margin-bottom:10px;
+margin-left:30px;
+height:27px;
+width:300px;
+font-size:18px;
+font-family:Arial, Helvetica, sans-serif;
+background-color:#fafafa;
+border:1px solid #eeeeee;
+line-height:27px;
+font-weight:bold
+}
+
+#multi {
+margin-left:30px;
+height:20px;
+}
+
+#bg span {
+font-family:"ËÎÌå";
+font-size:14px;
+color:#999999;
+font-style:italic;
+}
+
+#confirm {
+height:30px;
+margin-top:15px;
+}
+
+.loginbutton {
+background-image:url(../images/button.gif);
+width:132px;
+height:27px;
+cursor:pointer;
+}
+
+h5 {
+font-family:Verdana, Arial, Helvetica, sans-serif;
+text-indent:48px;
+line-height:22px;
+color:#FFFFFF;
+margin:0;
+font-weight:normal;
+}
+
+#footer {
+font-family:"ËÎÌå";
+font-size:12px;
+color:#666666;
+margin-top:5PX;
+background-color:#d7d7d7;
+}
+
+#footer span {
+font-family:Verdana;
+font-size:11px;
+color:#666666;
+margin-top:5PX;
+}
+
+#name {
+width:50px;
+height:20px;
+font-family:"Î¢ÈíÑÅºÚ";
+font-size:16px;
+position:relative;
+top:47px;
+left:240px;
+color:#666666;
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html charset="UTF-8">
+<head>
+  <title>Timeline | Group example</title>
+
+  <style>
+    body, html {
+      font-family: arial, sans-serif;
+      font-size: 11pt;
+    }
+
+    #visualization {
+      box-sizing: border-box;
+      width: 100%;
+      height: 900px;
+    }
+
+    /* 显示的任务块颜色 */
+    .itemclass {
+      background:#F0F0F0;
+      border:1px solid #F2F2F2;
+      position:relative;
+      z-index:1
+    }
+
+    .iteminnerclass {
+      background:#F0F0F0;
+      display:none;
+      border:1px solid #F2F2F2;
+      position:relative;
+      z-index:9999999;
+    }
+
+
+  </style>
+  <!-- note: moment.js must be loaded before vis.js, else vis.js uses its embedded version of moment.js -->
+  <link href="dist/vis.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <script src="js/moment.min.js" ></script>
+  <script src="dist/vis.js" ></script>
+  <script src="My97DatePicker/WdatePicker.js" ></script>
+</head>
+<body >
+<div   style="position:relative;top:10px;left:10px">
+查询范围：开始时间<input type="text" id="startdate" placeholder="2015-1-3"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})">结束时间<input type="text" id="enddte" placeholder="2015-1-8"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+条件过滤：<input type="text" id="searchfilter"  placeholder="查询条件" ><input type="button" value="查询" id="searchbutton"><a  href="http://127.0.0.1/kanban"><span style="position:relative;top:0px;left:150px">当前任务</span></a><br>
+<br></div>
+<!--
+<input type="button" id="window1" value="Set window from 2014-01-01 to 2014-04-01"><br>
+<input type="button" id="window2" value="Set window from 2014-01-01 to 2014-04-01 without animation"><br>
+<input type="button" id="fit" value="Fit all items"><br>
+<input type="button" id="select" value="Select & focus items 5 and 6"><br>
+<input type="button" id="focus1" value="Focus item 2"><br>
+<input type="button" id="focus2" value="Focus items 5 and 6 (slow animation)"><br>
+<input type="button" id="focus3" value="Focus current selection"><br>
+<input type="button" id="moveTo" value="Move to 2014-02-01"><br>
+-->
+<div style="position:relative;">
+<div id="visualization"></div>
+</div>
+<script >
+  var now = moment().minutes(0).seconds(0).milliseconds(0);
+  var groupCount = 4;
+  var itemCount = 25;
+
+  // create a data set with groups
+  var names = ['环境试验室', '耐久试验室', '重鼓试验室', '高温试验室'];
+  var groups = new vis.DataSet();
+  for (var g = 0; g < groupCount; g++) {
+    groups.add({id: g, content: names[g]});
+  }
+
+  // create a dataset with items
+  var items = new vis.DataSet();
+
+  /*
+  for (var i = 0; i < itemCount; i++) {
+    var start = now.clone().add(Math.random() * 24, 'hours');
+//    var end = start + 1;
+    var group = Math.floor(Math.random() * groupCount);
+    items.add({
+      id: i,
+      group: group,
+      content: '<div class="itemclass" onclick=mouseoveritem('+i+') onMouseOut=mouseoutitem('+i+') >显示的试验任务名称长度不超过一定长度显示比如十几个汉字</div><div class="iteminnerclass" id="pad' + i +'">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>',
+      start: start,
+      end: start+2,
+      type: 'point'  //point,box,range
+    });
+  }
+*/
+
+// for TEST ing..........
+  contentitem1='<div class="itemclass" onclick=mouseoveritem(1) onMouseOut=mouseoutitem(1) >奥铃升级项目B103样车</div><div class="iteminnerclass" id="pad1">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 09:20<br>实际结束时间：2015-1-7 10:00</div>';
+  contentitem2='<div class="itemclass" onclick=mouseoveritem(2) onMouseOut=mouseoutitem(2) >V2项目短轴EP3样车磨合与基本性能试验</div><div class="iteminnerclass" id="pad2">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 10:00<br>实际结束时间：2015-1-7 10:50</div>';
+  contentitem3='<div class="itemclass" onclick=mouseoveritem(3) onMouseOut=mouseoutitem(3) >短轴EP2样车性能试验</div><div class="iteminnerclass" id="pad3">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 11:30<br>实际结束时间：2015-1-7 12:30</div>';
+  contentitem4='<div class="itemclass" onclick=mouseoveritem(4) onMouseOut=mouseoutitem(4) >V1项目短轴EP2样车磨合与基本性能试验</div><div class="iteminnerclass" id="pad4">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 12:20<br>实际结束时间：2015-1-7 14:00</div>';
+  contentitem5='<div class="itemclass" onclick=mouseoveritem(5) onMouseOut=mouseoutitem(5) >奥铃1800车型动态换挡测试</div><div class="iteminnerclass" id="pad5">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-6 20:40<br>实际结束时间：2015-1-6 21:30</div>';
+  contentitem6='<div class="itemclass" onclick=mouseoveritem(6) onMouseOut=mouseoutitem(6) >PM项目M0-09样车底盘可靠性验证</div><div class="iteminnerclass" id="pad6">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 14:00<br>实际结束时间：2015-1-7 15:00</div>';
+  contentitem7='<div class="itemclass" onclick=mouseoveritem(7) onMouseOut=mouseoutitem(7) >H4项目LNG牵引车性能试验</div><div class="iteminnerclass" id="pad7">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 14:45<br>实际结束时间：2015-1-7 15:55</div>';
+  contentitem8='<div class="itemclass" onclick=mouseoveritem(8) onMouseOut=mouseoutitem(8) >M0-07骡车性能试验任务书</div><div class="iteminnerclass" id="pad8">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 15:15<br>实际结束时间：2015-1-7 15:55</div>';
+  contentitem9='<div class="itemclass" onclick=mouseoveritem(9) onMouseOut=mouseoutitem(9) >PM制动性能摸底试验</div><div class="iteminnerclass" id="pad9">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 16:00<br>实际结束时间：2015-1-7 16:40</div>';
+  contentitem10='<div class="itemclass" onclick=mouseoveritem(10) onMouseOut=mouseoutitem(10) >奥铃升级项目B103样车</div><div class="iteminnerclass" id="pad10">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 17:10<br>实际结束时间：2015-1-7 17:55</div>';
+  contentitem11='<div class="itemclass" onclick=mouseoveritem(11) onMouseOut=mouseoutitem(11) >奥铃1800车型动态换挡测试</div><div class="iteminnerclass" id="pad11">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 17:50<br>实际结束时间：2015-1-7 18:45</div>';
+  contentitem12='<div class="itemclass" onclick=mouseoveritem(12) onMouseOut=mouseoutitem(12) >巴西L6项目OBD标定试验</div><div class="iteminnerclass" id="pad12">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-7 18:25<br>实际结束时间：2015-1-7 19:00</div>';
+  contentitem13='<div class="itemclass" onclick=mouseoveritem(13) onMouseOut=mouseoutitem(13) >巴西L6 高原试验</div><div class="iteminnerclass" id="pad13">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-8 19:00<br>实际结束时间：2015-1-8 19:35</div>';
+  contentitem14='<div class="itemclass" onclick=mouseoveritem(14) onMouseOut=mouseoutitem(14) >奥铃升级项目热平衡试验</div><div class="iteminnerclass" id="pad14">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-8 19:50<br>实际结束时间：2015-1-8 20:20</div>';
+  contentitem15='<div class="itemclass" onclick=mouseoveritem(15) onMouseOut=mouseoutitem(15) >奥铃升级样车寒区试验任务</div><div class="iteminnerclass" id="pad15">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2015-1-8 20:20<br>实际结束时间：2015-1-8 20:55</div>';
+  contentitem16='<div class="itemclass" onclick=mouseoveritem(16) onMouseOut=mouseoutitem(16) >巴西L6项目OBD标定试验</div><div class="iteminnerclass" id="pad16">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>';
+  contentitem17='<div class="itemclass" onclick=mouseoveritem(17) onMouseOut=mouseoutitem(17) >K1窄体加长项目</div><div class="iteminnerclass" id="pad17">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>'; 
+  contentitem18='<div class="itemclass" onclick=mouseoveritem(18) onMouseOut=mouseoutitem(18) >K1窄体加长出口菲律宾项目</div><div class="iteminnerclass" id="pad18">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>'; 
+  contentitem19='<div class="itemclass" onclick=mouseoveritem(19) onMouseOut=mouseoutitem(19) >4JB1匹配K1加长窄体排放试</div><div class="iteminnerclass" id="pad19">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>'; 
+  contentitem20='<div class="itemclass" onclick=mouseoveritem(20) onMouseOut=mouseoutitem(20) >K1窄体国五公告样车排放摸底</div><div class="iteminnerclass" id="pad20">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>'; 
+  contentitem21='<div class="itemclass" onclick=mouseoveritem(21) onMouseOut=mouseoutitem(21) >V1项目4JB1T-EP0样车制动性能摸底试验</div><div class="iteminnerclass" id="pad21">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>'; 
+  contentitem22='<div class="itemclass" onclick=mouseoveritem(22) onMouseOut=mouseoutitem(22) >V1项目短轴EP2样车磨合与基本性能试验</div><div class="iteminnerclass" id="pad22">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>'; 
+  contentitem23='<div class="itemclass" onclick=mouseoveritem(23) onMouseOut=mouseoutitem(23) >P201匹配4G69国V项目OBD路试试验</div><div class="iteminnerclass" id="pad23">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>'; 
+  contentitem24='<div class="itemclass" onclick=mouseoveritem(24) onMouseOut=mouseoutitem(24) >皮卡P201_4G69欧二排放验证</div><div class="iteminnerclass" id="pad24">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>'; 
+  contentitem25='<div class="itemclass" onclick=mouseoveritem(25) onMouseOut=mouseoutitem(25) >P202车型Can通信测试</div><div class="iteminnerclass" id="pad25">任务书编号：FT_QK_t001<br>样品编号：FT000001<br>VIN号：CH20110303<br>产品线：轻卡系列汽车<br>试验项目：绕桩测试能力测试<br>关联设备：高低温舱、环境分析仪<br>实际开始时间：2014-12-12 18:30<br>实际结束时间：2014-12-12 20:20</div>';
+
+  var items = new vis.DataSet([
+    {id: 1, group:0, content: contentitem1, start: '2015-1-7 09:20',type:'point'},
+    {id: 2, group:0, content: contentitem2, start: '2015-1-7 10:00',type:'point'},
+    {id: 3, group:0, content: contentitem3, start: '2015-1-7 11:30',type:'point'},
+    {id: 4, group:0, content: contentitem4, start: '2015-1-7 12:20',type:'point'},
+    {id: 5, group:0, content: contentitem5, start: '2015-1-6 20:40',type:'point'},
+    {id: 6, group:0, content: contentitem6, start: '2015-1-7 14:00', type: 'point'},
+    {id: 7, group:0, content: contentitem7, start: '2015-1-7 14:45', type: 'point'},
+    {id: 8, group:0, content: contentitem8, start: '2015-1-7 15:15', type: 'point'},
+    {id: 9, group:0, content: contentitem9, start: '2015-1-7 16:00', type: 'point'},
+    {id: 10, group:0, content: contentitem10, start: '2015-1-7 17:10', type: 'point'},
+    {id: 11, group:0, content: contentitem11, start: '2015-1-7 17:50', type: 'point'},
+    {id: 12, group:0, content: contentitem12, start: '2015-1-7 18:25', type: 'point'},
+    {id: 13, group:0, content: contentitem13, start: '2015-1-8 19:00', type: 'point'},
+    {id: 14, group:0, content: contentitem14, start: '2015-1-8 19:50', type: 'point'},
+    {id: 15, group:0, content: contentitem15, start: '2015-1-8 20:20', type: 'point'},
+    {id: 16, group:0, content: contentitem16, start: '2015-1-8 21:10', type: 'point'},
+    {id: 17, group:1, content: contentitem17, start: '2015-1-8 10:25', type: 'point'},
+    {id: 18, group:1, content: contentitem18, start: '2015-1-7 12:10', type: 'point'},
+    {id: 19, group:2, content: contentitem19, start: '2015-1-8 08:30', type: 'point'},
+    {id: 20, group:2, content: contentitem20, start: '2015-1-7 10:10', type: 'point'},
+    {id: 21, group:2, content: contentitem21, start: '2015-1-8 11:20', type: 'point'},
+    {id: 22, group:3, content: contentitem22, start: '2015-1-8 09:20', type: 'point'},
+    {id: 23, group:3, content: contentitem23, start: '2015-1-7 11:30', type: 'point'},
+    {id: 24, group:3, content: contentitem24, start: '2015-1-7 13:15', type: 'point'},
+    {id: 25, group:3, content: contentitem25, start: '2015-1-8 14:25', type: 'point'}
+  ]);
+
+//     content: 'shiyan ,xxxx,中文显示 ' + i +
+//          ' <span style="color:#97B0F8;">(' + names[group] + ')</span>',
+  // create visualization
+  var container = document.getElementById('visualization');
+  var options = {
+    groupOrder: 'id' , // groupOrder can be a property name or a sorting function
+//    clickToUse：true
+    editable:false,
+    autoResize:true,
+    autoResize:true
+  };
+
+  var timeline = new vis.Timeline(container);
+  timeline.setOptions(options);
+  timeline.setGroups(groups);
+  timeline.setItems(items);
+
+  function mouseoveritem(item){
+      document.getElementById("pad"+item).style.display="block";
+ //     var selection = timeline.getSelection();
+//      timeline.setSelection(selection, {
+//      focus: true
+//    });
+//timeline.focus(selection);
+//timeline.redraw();
+//timeline.redraw();
+    timeline.on(click,{});
+  }
+
+  function mouseoutitem(item){
+      document.getElementById("pad"+item).style.display="none";
+      var selection = timeline.getSelection();
+      //timeline.focus(selection);
+//  timeline.setOptions(options);
+//timeline.setGroups(groups);
+  //timeline.setItems(items);
+    timeline.setSelection(selection);
+    //timeline.redraw();
+  }
+
+document.getElementById('searchbutton').onclick = function() {
+    //alert('hello' + items.get(0).content);
+    var itemfilter = document.getElementById('searchfilter').value;
+    var selectSet = [];
+    for (var i = 1; i <= itemCount; i++) {
+        //alert(items.get(i).content);
+        if(items.get(i).content.indexOf(itemfilter) >= 0 )  
+        {  
+          selectSet.push(i); 
+        }
+    }
+    //alert(selectSet);
+    timeline.setSelection(selectSet,{
+      focus: true
+    });
+//    timeline.setWindow('2014-01-01', '2014-04-01');
+  };
+
+/*
+document.getElementById('window1').onclick = function() {
+    timeline.setWindow('2014-01-01', '2014-04-01');
+  };
+  document.getElementById('window2').onclick = function() {
+    timeline.setWindow('2014-01-23', '2014-01-26', {
+      animate: false
+    });
+  };
+  document.getElementById('fit').onclick = function() {
+    timeline.fit();
+  };
+  document.getElementById('select').onclick = function() {
+    timeline.setSelection([5, 6], {
+      focus: true
+    });
+  };
+  document.getElementById('focus1').onclick = function() {
+    timeline.focus(2);
+  };
+  document.getElementById('focus2').onclick = function() {
+    timeline.focus([5, 6], {
+      animate: 3000 // ms
+    });
+  };
+  document.getElementById('focus3').onclick = function() {
+    var selection = timeline.getSelection();
+    timeline.focus(selection);
+  };
+  document.getElementById('moveTo').onclick = function() {
+    timeline.moveTo('2014-02-01');
+  };
+  */
+
+  timeline.setWindow('2015-1-3', '2015-1-8');
+ 
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+
+<!-- div class="photo" style="border:2px solid {{card.typecolor}}; height:270px"  data-ng-click="card.showIndex = !card.showIndex" -->
+<div class="photo" style="border:2px solid {{card.typecolor}};" >
+        <div class="photo-index" data-ng-if="card.showIndex">
+            <p>设备功能、计划...</p>
+            <!--p class="balloon-wrapper">
+                <span class="balloon">{{card.id}}</span>
+            </p-->
+        </div>
+        <div class="photo-wrapper" data-ng-if="!card.showIndex">    
+            <div style="position:relative">
+                    <span class="card-name"> <b>&nbsp;{{card.name}}</b></span>
+            </div>
+            <img ng-if="card.status =='试验中'" data-ng-src="{{card.statsrc}}" class="animation-fade" data-imageloaded data-loadedclass="animation-faded">
+            <img ng-if="card.status !=='试验中'" data-ng-src="{{card.src}}" class="animation-fade" data-imageloaded data-loadedclass="animation-faded">
+        </div>
+        <div class="photo-description" data-ng-if="!card.showIndex">
+            <span class="card-name">试验室：{{card.id}}</span> 
+            <br/>
+            <span class="card-name">利用率：{{card.data}}%</span> <br/>
+            <span class="card-name" >完好率：{{card.data2}}%</span> 
+            <div style="background-color:{{card.color}};text-align:left;height:80px" >【{{card.task}}】
+            </div>
+            <div style="background-color:{{card.color}};text-align:center;">
+            {{card.status}} [{{card.runtime}}] 
+            </div>
+        </div>
+</div>

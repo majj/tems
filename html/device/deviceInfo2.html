@@ -1,0 +1,62 @@
+﻿<div class="table table-bordered table-hover" ng-init="vm.activedetail=0" style="width:1000px; margin:0px 10px 0px 0px; float:left;">
+  <table class="table table-bordered table-hover" width="860" border="1">
+      <tr>
+        <td width="233">设备名</td>
+        <td width="226">{{currentcard.name}}</td>
+        <td width="190">当前任务</td>
+        <td width="211">{{currentcard.task}}</td>
+      </tr>
+      <tr>
+        <td colspan="2" rowspan="3"><div class="btn btn-primary">8小时状态</div><b>【维保】2小时【空闲】2小时【试验中】4小时【故障】0小时 </b>
+          <div class="progress" style="height:40px;top:10px;margin-top:10px">
+             <div class="progress-bar progress-bar-running" role="progressbar"  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;" data-toggle="tooltip" data-placement="bottom" title="40% 完成">
+             </div>
+             <div class="progress-bar progress-bar-idle" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  style="width: 30%;" data-toggle="tooltip" data-placement="bottom" title="30% 完成">
+             </div>
+             <div class="progress-bar progress-bar-failure" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  style="width: 10%;" data-toggle="tooltip" data-placement="bottom" title="10% 完成">
+             </div>
+             <div class="progress-bar progress-bar-maintain" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  style="width: 10%;" data-toggle="tooltip" data-placement="bottom" title="10% 完成">
+             </div>
+             <div class="progress-bar progress-bar-running" role="progressbar"  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;" data-toggle="tooltip" data-placement="bottom" title="10% 完成">
+             </div>
+          </div>
+        </td>
+        <td  ng-class="{devselect: vm.activedetail == 1}">计划任务</td>
+        <td  ng-class="{devselect: vm.activedetail == 1}" ng-click="vm.activedetail = 1"><span >查看</span></td>
+      </tr>
+      <tr>
+        <td  ng-class="{devselect: vm.activedetail == 2}">历史任务</td>
+        <td  ng-class="{devselect: vm.activedetail == 2}" ng-click="vm.activedetail = 2"><span ng-click="vm.activedetail = 2">查看</span></td>
+      </tr>
+      <tr>
+        <td  ng-class="{devselect: vm.activedetail == 3}">设备采集详细</td>
+        <td  ng-class="{devselect: vm.activedetail == 3}" ng-click="vm.activedetail = 3"><span ng-click="vm.activedetail = 3">查看</span></td>
+      </tr>
+    </table>
+<script>
+   $(function () {$("[data-toggle='tooltip']").tooltip();});
+</script>
+</div>
+
+<div ng-show="vm.activedetail == 1" class="table table-bordered table-hover" style="height:250px;width:960px; margin:0px 10px 0px 0px; float:left">
+	<table class="table table-bordered table-hover">
+		<tr><td>计划开始时间</td><td>计划结束时间</td><td>项目名称</td><td>任务书编号</td><td>样品编号</td><td>VIN号</td><td>产品线</td><td>试验项目</td></tr>
+
+		<tr ng-repeat="tp in currentcard.carddetail.taskplane"><td>{{tp.planStartDate}}</td><td>{{tp.planEndDate}}</td><td>{{tp.pmName}}</td><td>{{tp.taskNO}}</td><td>{{tp.details}}</td><td>{{tp.vinNO}}</td><td>欧辉客车</td><td>奥铃升级项目</td></tr>
+	</table>
+</div>
+
+<div ng-show="vm.activedetail == 2" class="table table-bordered table-hover" style="height:250px;width:960px; margin:0px 10px 0px 0px; float:left">
+  <table class="table table-bordered table-hover">
+    <tr><td>实际开始时间</td><td>实际结束时间</td><td>项目名称</td><td>任务书编号</td><td>样品编号</td><td>VIN号</td><td>产品线</td><td>试验项目</td></tr>
+  <tr ng-repeat="tp in currentcard.carddetail.taskplane"><td>{{tp.planStartDate}}</td><td>{{tp.planEndDate}}</td><td>{{tp.pmName}}</td><td>{{tp.taskNO}}</td><td>{{tp.details}}</td><td>{{tp.vinNO}}</td><td>欧辉客车</td><td>奥铃升级项目</td></tr>
+  </table>
+</div>
+
+<div ng-show="vm.activedetail == 3" class="table table-bordered table-hover" style="height:250px;width:960px; margin:0px 10px 0px 0px; float:left">
+  <table class="table table-bordered table-hover">
+    <tr><td>日志时间</td><td>事件</td><td>详细内容</td></tr>
+    <tr ng-repeat="tp in currentcard.carddetail.equminfo"><td>{{tp.logtime}}</td><td>{{tp.equmevent}}</td><td>{{tp.eventdetail}}</td></tr>
+  </table>
+</div>
+

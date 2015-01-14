@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+  <title>系统管理</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/MultipleDatePicker/dist/multiple-date-picker.css"/>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="local.css"/>
+</head>
+<body ng-app="sysadminapp">
+	<div ng-controller="mainctrl" style=" position:absolute; left:20px;">
+	  <ul class="nav nav-tabs"  ng-init="pg.activeTab=1">
+	    <li ng-class="{active: pg.activeTab == 1}"><a  ng-click="pg.activeTab = 1">用户权限管理</a></li>
+	    <li ng-class="{active: pg.activeTab == 2}"><a  ng-click="pg.activeTab = 2">KPI设置界面</a></li>
+	    <li ng-class="{active: pg.activeTab == 3}"><a  ng-click="pg.activeTab = 3">系统配置管理</a></li>
+	    <li ng-class="{active: pg.activeTab == 4}"><a  ng-click="pg.activeTab = 4">操作员日志界面</a></li>
+	  </ul>
+	  <div class="tab-content tab-bordered">
+	    <div class="tab-panel slide-animate-container" ng-show="pg.activeTab == 1"  >
+	    	<div class="slide-animate" ng-include="'userManager.html'">
+	  		</div>
+	    </div>
+	    <div class="tab-panel slide-animate-container" ng-show="pg.activeTab == 2"  >
+	    	<div class="slide-animate" ng-include="'KPISetup.html'">
+	  		</div>
+	    </div>
+	    <div class="tab-panel slide-animate-container" ng-show="pg.activeTab == 3"  >
+	    	<div class="slide-animate" ng-include="'MultipleDatePicker.html'">
+	  		</div>
+	    </div>
+	    <div class="tab-panel slide-animate-container" ng-show="pg.activeTab == 4"  >
+	    	<div class="slide-animate" ng-include="'operationlog.html'">
+	  		</div>
+	    </div>
+	 </div>
+	</div>
+
+   <script src="/components/angular/angular.min.js"></script>
+   <script src="/components/angular-flot/angular-flot.js"></script> 
+   <script src="/components/angular-route/angular-route.min.js"></script>
+   <!-- script src="scripts/app.js"></script -->
+   <!-- script src="scripts/controllers/home.js"></script -->
+
+   <!-- script src="/MultipleDatePicker/dist/angular.min.js"></script -->
+   <!-- script src="/MultipleDatePicker/appdate.js"></script -->
+   <script src="/MultipleDatePicker/dist/lodash.min.js"></script>
+   <script src="/MultipleDatePicker/dist/moment.min.js"></script>
+   <script src="/MultipleDatePicker/dist/multipleDatePicker.min.js"></script>
+   <script type="text/javascript" src="apps.js"></script>
+</body>
+</html>

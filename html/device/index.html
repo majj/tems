@@ -1,0 +1,52 @@
+
+<!doctype html>
+<html charset="utf-8">
+    <head>
+        <title>Device Manager</title>
+        <meta name="viewport" content="user-scalable=no, width=device-width, minimum-scale=1, maximum-scale=1">
+        <!--link href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+        <link href="styles/hint.css" rel="stylesheet" type="text/css"-->
+        <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/main.css">
+
+           
+    </head>
+    <body data-ng-app="kanban.deckgrid">
+    <div ng-controller="HomeController" >
+        <!--div class="container"-->
+        <div style=" position:relative; left:20px;">
+          <ul class="nav nav-tabs"  ng-init="switchlab(vm.activeTab)">
+            <li ng-class="{active: vm.activeTab == 1}"><a href="javascript:;" ng-click="vm.activeTab = 1;switchlab(1)">环境试验室</a></li>
+            <li ng-class="{active: vm.activeTab == 2}"><a href="javascript:;" ng-click="vm.activeTab = 2;switchlab(2)">耐久试验室</a></li>
+            <li ng-class="{active: vm.activeTab == 3}"><a href="javascript:;" ng-click="vm.activeTab = 3;switchlab(3)">重鼓试验室</a></li>
+            <li ng-class="{active: vm.activeTab == 4}"><a href="javascript:;" ng-click="vm.activeTab = 4;switchlab(4)">高温试验室</a></li>
+          </ul>
+          <div class="tab-content tab-bordered"></div>
+        </div>
+            <div class="deckgrid">
+            <div data-ng-repeat="card in photos" style="position:relative;width:260px;margin:0px 10px 0px 0px; float:left"  data-ng-include="'templates/deckgrid-card.html'"></div>
+            </div>
+            <div ng-show="detailshow" class="deckgrid" ng-include="'deviceInfo2.html'">
+            </div>
+      </div>
+
+       <!--script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script-->
+        <!-- script src="/components/flot/jquery.js"></script -->
+        <script src="/components/moment/min/moment.min.js"></script>
+        <script src="/components/flot/jquery.flot.js"></script>
+        <script src="/components/flot/jquery.flot.stack.js"></script>
+        <script src="/components/flot/jquery.flot.resize.js"></script>
+        <script src="/components/angular/angular.min.js"></script>
+        <script src="/components/angular-flot/angular-flot.js"></script> 
+        <script src="/components/angular-route/angular-route.min.js"></script>
+        <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/components/jquery/dist/jquery.min.js"></script>
+
+        <script src="scripts/angular-deckgrid.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/home.js"></script>
+        <!--script src="scripts/controllers/about.js"></script-->
+        <script src="scripts/directives/imageloaded.js"></script>
+    </body>
+</html>

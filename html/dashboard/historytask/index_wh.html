@@ -1,0 +1,26 @@
+﻿<html>
+  <head>
+   <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+   <script src="/components/jquery/dist/jquery.min.js"></script>
+   <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+   </head>
+<body >
+  <div style=" position:relative; left:20px;">
+     <ul id="myTab" name="myTab" class="nav nav-tabs" >
+      <li ><a  href="http://127.0.0.1/dashboard/historytask/index_ly.html">利用率KPI年图</a></li>
+        <li class="active"><a  href="http://127.0.0.1/dashboard/historytask/index_wh.html">完好率KPI年图</a></li>
+        <li style="position:relative;top:0px;left:280px;width:300px;font-weight:bold;"> <a href="/dashboard/dist/#/dashboard/db/dashboard"><<<实时仪表盘</a></li>
+     </ul>
+   <div class="tab-content tab-bordered"></div>
+  </div>
+<div  id="myTab1" class="tab-pane fade in active" style="position:absolute;top:50px;left:20px">
+<iframe data-toggle="tab" class="collapse in" name="whlkpi" id="lylkpi" src="historytask_wh.html" frameBorder="0" width="980" scrolling="no" height="600">
+</iframe>
+</div>
+<br><br>
+    <script src="/components/angular/angular.min.js"></script>
+        <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/components/jquery/dist/jquery.min.js"></script>
+        <script src="scripts/app.js"></script>
+</body>
+</html>

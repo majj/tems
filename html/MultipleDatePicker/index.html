@@ -1,0 +1,32 @@
+<html ng-app="myApp" >
+    <head>
+        <link rel="stylesheet" type="text/css" href="dist/multiple-date-picker.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+    </head>
+    <body ng-controller="multipleDatePicker">
+	  <div class="topmenue" style=" position:absolute; left:30px;">
+	<table>
+	<tr class="menutr">
+	<td style="width:180px"><a class="menua" href="index.html" target="_self">用户权限管理</a></td>
+	<td style="width:180px"><a class="menua" href="KPISetup.html" target="_self">KPI设置界面</a></td>
+	<td style="width:180px"><a class="menua" href="reportmodif.html" target="_self">报表数据管理</a></td>
+	<td style="width:180px"><a class="menua" href="MultipleDatePicker.html" target="_self">系统配置管理</a></td>
+	<td style="width:180px"><a class="menua" href="operationlog.html" target="_self">操作员日志界面</a></td>
+	</tr>
+	</table>
+	
+  </div>
+    <div style="position:absolute; left:30px; top:40px">
+    	<span>设置工作日</span>
+    </div>
+    <div  style="position:absolute; left:20px; top:60px">
+      <multiple-date-picker month ="month" days = "days" days-selected="get_date" days-selected="selectedDays" day-click="logInfos"/>
+    </div>
+        <script src="dist/angular.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="dist/lodash.min.js"></script>
+        <script type="text/javascript" src="dist/moment.min.js"></script>
+        <script type="text/javascript" src="dist/multipleDatePicker.min.js"></script>
+
+    </body>
+</html>

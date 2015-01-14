@@ -1,0 +1,283 @@
+﻿<html charset="UTF-8">
+
+  <head>
+    <meta >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <title></title>
+    <meta name="description" content="Kanban Board">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="styles/4198d9ac.main.css">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/themes/default-bright.css" id="themeStylesheet">
+</head>
+<body charset="UTF-8" ng-app="mpk" ng-controller="ApplicationController" ui-keyup="{'ctrl-shift-72':'openHelpShortcut($event)'}">
+
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"  charset="UTF-8"></script>
+      <script src="bower_components/json3/lib/json3.min.js"  charset="UTF-8"></script>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+<header class="navbar navbar-fixed-top" role="navigation" id="headerMenu">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="navbar-header col-md-3">
+        <span id="kanbanName" class="navbar-brand" ng-model="kanban" ng-hide="editingName"><a href="#" class="renameKanban" ng-click="editingKanbanName()">{{kanban.name}}</a></span>
+        <div ng-show="editingName" class="pull-left">
+          <form ng-submit="rename()">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <a href="#cancel" ng-click="editingName=false"><i class="glyphicon glyphicon-tasks"></i></a>
+              </span>
+              <input type="text" name="kanbanName" ng-model="newName" class="form-control">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-4">       
+        <div id="info" class="nav pull-right" ng-show="showInfo">
+          <span id="error" class="error" ng-show="showError"><a href="#close" ng-click="showInfo=false;showError=false;errorMessage=''">{{errorMessage}}</a></span>
+          <span id="message" class="">{{infoMessage}}</span>
+          <span id="spinner" class="pull-right" spin="spinConfig" spin-if="showSpinner"></span>
+        </div>
+        <div id="quickSwitch" class="pull-right form-group">
+          <form>
+            <select ng-model="switchTo" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
+              <option>切换试验室 ...</option>
+            </select>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-4">       
+        <div id="info" class="nav pull-right" ng-show="showInfo">
+          <span id="error" class="error" ng-show="showError"><a href="#close" ng-click="showInfo=false;showError=false;errorMessage=''">{{errorMessage}}</a></span>
+          <span id="message" class="">{{infoMessage}}</span>
+          <span id="spinner" class="pull-right" spin="spinConfig" spin-if="showSpinner"></span>
+        </div>
+        <div id="historytask" class="pull-right form-group">
+          <a href="http://127.0.0.1/vis/examples/timeline/history_task.html"><span >历史任务</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid" id="kanban" ng-controller="KanbanController">
+    <div ng-model="kanban">
+        <div id="columns" class="row">
+            <div class="col-md-{{12/kanban.numberOfColumns}}" ng-repeat="column in kanban.columns" data-columnindex="{{$index}}" id="column{{$index}}">
+                <div class="column">
+                  <div class="columnHeader">
+                      <a href="#addCard" title="Add card to column" ng-if='column.name === "本周计划"' class="pull-right" ng-click="addNewCard(column)"><i class="glyphicon glyphicon-plus"></i></a>
+                      <a href="#" title="import Weekly plan" ng-if='column.name === "本周计划"' ng-click="editing = false" ng-model="column" ng-hide="editing"><i class="glyphicon glyphicon-tasks"></i></a>
+                      <span ng-hide="editing">{{column.name}} ({{column.cards.length}})</span><input  ng-if='column.name === "本周计划"' type="file"  class="inputfile"  name="file" accept="application/msexcel">
+                      <form ng-show="editing" ng-submit="editing = true">
+                          <div class="input-group">
+                              <span class="input-group-addon"><a href="#cancel" ng-click="editing = false"><i class="glyphicon glyphicon-tasks"></i></a></span>
+                              <input class="form-control" type="text" ng-model="column.name" value="{{column.name}}" required="" focus-me="editing">
+                          </div>
+                      </form>
+                  </div>
+                  <ul class="cards"  ui-sortable="{connectWith: '#kanban ul.cards'}" sortable="" ng-model="column.cards" style="{{minHeightOfColumn}}">
+                      <li class="card" ng-if='column.name === "本周计划"' ng-repeat="card in column.cards" style="background-color: #{{colorFor(card)}}"  ng-Mouseover="cardexpand_show(card,'block')"  ng-Mouseleave="cardexpand_show(card,'none')" >
+                          <a href="#deleteCard" class="pull-right" ng-click="delete(card, column)"><i class="glyphicon glyphicon-remove  pull-right"></i></a>
+                          <a href="#" class="pull-right" ng-click="openCardDetails(card)"><i class="glyphicon glyphicon-pencil "></i></a>
+                          <a ng-click="openCardDetails(card)"><span  tooltip-popup-delay="2000" tooltip="{{details(card)}}">【项目】：{{card.pmName}}</span></a><div ng-init="card.cardexpandinfo='none'" style="display:{{card.cardexpandinfo}};">【任务书】:{{card.taskNO}}<br>【VIN号】:{{card.vinNO}}</div>
+                      </li>
+                      <li class="card" ng-if='column.name !== "本周计划"' ng-repeat="card in column.cards" style="background-color: #{{colorFor(card)}}">
+                          <a href="#deleteCard" class="pull-right" ng-click="delete(card, column)"><i class="glyphicon glyphicon-remove  pull-right"></i></a>
+                          <a href="#" class="pull-right" ng-click="openCardDetails(card)"><i class="glyphicon glyphicon-pencil "></i></a>
+                          <a ng-click="openCardDetails(card)"><span  tooltip-popup-delay="2000" tooltip="{{details(card)}}">【项目】：{{card.pmName}}<br>【任务书】:{{card.taskNO}}<br>【VIN号】:{{card.vinNO}}</span></a>
+                      </li>
+                  </ul>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="kanbanOperations">
+        <!-- this one is for the new card -->           
+          <script type="text/ng-template" id="NewKanbanCard.html"  charset="UTF-8">
+              <form ng-submit="addNewCard()" class="noMargin" name="newCardForm">
+                  <div class="modal-header">
+                    <button type="button" class="close" ng-click="close()">&times;</button>
+                    <h4 class="modal-title" ng-model="kanbanColumnName">New card for column '{{kanbanColumnName}}'</h4>
+                  </div>
+                  <div class="modal-body">
+
+                        <div class="form-group">
+                            <label class="control-label" for="cardTitle">项目名称</label>
+                            <div class="controls">
+                              <div>
+                                <input name="pmName" type="text" id="pmName" placeholder="项目名称" ng-model="pmName"  class="cardInputs"  focus-me />
+                              </div>
+                            </div>
+                            <label class="control-label" for="cardTitle">任务书编号</label>
+                            <div class="controls">
+                              <div>
+                                <input name="taskNO" type="text" id="taskNO" placeholder="任务书编号" ng-model="taskNO"  class="cardInputs"  focus-me />
+                              </div>
+                            </div>
+                            <label class="control-label" for="cardTitle">样品编号</label>
+                            <div class="controls">
+                              <div>
+                                <input name="sampleNO" type="text" id="sampleNO" placeholder="样品编号" ng-model="sampleNO"  class="cardInputs"  focus-me />
+                              </div>
+                            </div>
+
+                            <label class="control-label" for="cardTitle">VIN号</label>
+                            <div class="controls">
+                              <div>
+                                <input name="vinNO" type="text" id="vinNO" placeholder="VIN号" ng-model="vinNO"  class="cardInputs"   focus-me />
+                              </div>
+                            </div>
+                            <label class="control-label" for="cardTitle">产品线</label>
+                            <div class="controls">
+                              <div>
+                                <input name="productLine" type="text" id="productLine" placeholder="产品线" ng-model="productLine"  class="cardInputs"  focus-me />
+                              </div>
+                            </div>
+                            <label class="control-label" for="cardTitle">试验项目</label>
+                            <div class="controls">
+                              <div>
+                                <input name="details" type="text" id="details" placeholder="试验项目" ng-model="details"  class="cardInputs"  focus-me />
+                              </div>
+                            </div>
+                            <label class="control-label" for="cardTitle">关联试验设备</label>
+                            <div class="controls clearfix">
+                            <select style="width:300px"   ng-if='cardkanbanname === "环境试验室"' id="selectequipment"  ng-model="equipment" multiple >
+                                <option value="1">环境试验室高低温舱</option>
+                                <option value="2">环境试验室高低温转鼓</option>
+                                <option value="3">环境试验室排放分析仪</option>
+                                <option value="4">环境试验室常温转鼓</option>
+                                <option value="5">环境试验室四驱高温舱</option>
+                                <option value="6">环境试验室四驱转鼓</option>
+                            </select>
+                            <select style="width:300px"   ng-if='cardkanbanname === "耐久试验室"' id="selectequipment"  ng-model="equipment" multiple >
+                                <option value="1">耐久试验室转鼓#1</option>
+                                <option value="2">耐久试验室转鼓#2</option>
+                                <option value="3">耐久试验室转鼓#3</option>
+                            </select>
+                           <select style="width:300px"   ng-if='cardkanbanname === "性能试验室"' id="selectequipment"  ng-model="equipment" multiple >
+                                <option value="1">重型转鼓#1</option>
+                            </select>
+                          </div>
+                            <label class="control-label" for="cardTitle">关联试验时间</label>
+                            <div class="controls clearfix">
+                            <lable >计划开始时间</lable><input type=text ng-model="planStartDate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH'})" placeholder="计划开始时间"></input>
+                            <lable >计划结束时间</lable><input type=text ng-model="planEndDate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH'})" placeholder="计划结束时间"></input>
+                            <br>
+                            <lable >实际开始时间</lable><input type=text ng-model="realStartDate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" placeholder="实际开始时间"></input>
+                            <lable >实际结束时间</lable><input type=text ng-model="realEndDate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" placeholder="实际结束时间"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div><label class="control-label">Card color</label></div>
+                            <color-selector options="colorOptions" ng-model="cardColor" prefix="editCardColor" class="colorSelector" show-hex-code="true" />
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="close()">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="addNewCard()">Add</button>
+                  </div>
+              </form>
+        </script>
+
+        <script type="text/ng-template" id="OpenCard.html"   charset="UTF-8">
+              <form  ng-submit="update()" class="noMargin" name="cardDetails">
+                  <div class="modal-header">
+                    <button type="button" class="close" ng-click="close()">&times;</button>
+                    <h4 class="modal-title">Card details</h4>
+                  </div>
+                  <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label" for="cardTitle">项目名称</label>
+                            <div class="controls">
+                                <input name="pmName" type="text" id="cardpmName" placeholder="项目名称" ng-model="pmName"  />
+                            </div>
+                            <label class="control-label" for="cardTitle">任务书编号</label>
+                            <div class="controls">
+                                <input name="taskNO" type="text" id="cardtaskNO" placeholder="任务书编号" ng-model="taskNO"  />
+                            </div>
+                            <label class="control-label" for="cardTitle">样品编号</label>
+                            <div class="controls">
+                                <input name="sampleNO" type="text" id="cardsampleNO" placeholder="样品编号" ng-model="sampleNO"  />
+                            </div>
+                            <label class="control-label" for="cardTitle">VIN号</label>
+                            <div class="controls">
+                                <input name="vinNO" type="text" id="cardvinNO" placeholder="VIN号" ng-model="vinNO"   />
+                            </div>
+                            <label class="control-label" for="cardTitle">产品线</label>
+                            <div class="controls">
+                                <input name="productLine" type="text" id="cardproductLine" placeholder="产品线" ng-model="productLine"  />
+                            </div>
+                            <label class="control-label" for="cardTitle">试验项目</label>
+                            <div class="controls">
+                                <input name="details" type="text" id="details" placeholder="试验项目" ng-model="details" />
+                            </div>
+                            <label class="control-label" for="cardTitle">关联试验设备</label>
+                            <div class="controls clearfix">
+												    <select style="width:300px"   ng-if='cardkanbanname === "环境试验室"' id="selectequipment"  ng-model="equipment" multiple >
+												        <option value="1">环境试验室高低温舱</option>
+												        <option value="2">环境试验室高低温转鼓</option>
+                                <option value="3">环境试验室排放分析仪</option>
+												        <option value="4">环境试验室常温转鼓</option>
+                                <option value="5">环境试验室四驱高温舱</option>
+                                <option value="6">环境试验室四驱转鼓</option>
+												    </select>
+                            <select style="width:300px"   ng-if='cardkanbanname === "耐久试验室"' id="selectequipment"  ng-model="equipment" multiple >
+                                <option value="1">耐久试验室转鼓#1</option>
+                                <option value="2">耐久试验室转鼓#2</option>
+                                <option value="3">耐久试验室转鼓#3</option>
+                            </select>
+                           <select style="width:300px"   ng-if='cardkanbanname === "性能试验室"' id="selectequipment"  ng-model="equipment" multiple >
+                                <option value="1">重型转鼓#1</option>
+                            </select>
+                          </div>
+                            <label class="control-label" for="cardTitle">关联试验时间</label>
+                            <div class="controls clearfix">
+                            <lable >计划开始时间</lable><input type=text ng-model="planStartDate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH'})" placeholder="计划开始时间"></input>
+                            <lable >计划结束时间</lable><input type=text ng-model="planEndDate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH'})" placeholder="计划结束时间"></input>
+                            <br>
+                            <lable >实际开始时间</lable><input type=text ng-model="realStartDate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" placeholder="实际开始时间"></input>
+                            <lable >实际结束时间</lable><input type=text ng-model="realEndDate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" placeholder="实际结束时间"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div><label class="control-label">Card color</label></div>
+                            <color-selector options="colorOptions" ng-model="cardColor" prefix="editCardColor" class="colorSelector" show-hex-code="true" />
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="close()">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="update()">Update</button>
+                  </div>
+              </form>
+        </script>
+    </section>
+
+</div>
+<footer>
+</footer>
+        <script src="bower_components/jquery/jquery.min.js" charset="UTF-8"></script>
+        <script src="bower_components/angular/angular.min.js" charset="UTF-8"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js" charset="UTF-8"></script>
+        <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap.min.js" charset="UTF-8"></script>
+        <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js" charset="UTF-8"></script>
+        <script src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js" charset="UTF-8"></script>
+        <script src="bower_components/angular-ui-utils/ui-utils.min.js" charset="UTF-8"></script>
+        <script src="bower_components/spinjs/spin.js"   charset="UTF-8"></script>
+        <script src="bower_components/FileSaver/FileSaver.js"   charset="UTF-8"></script>
+        <script src="scripts/5ebce75f.themes.js"   charset="UTF-8"></script>
+        <script src="../My97DatePickerBeta/My97DatePicker/WdatePicker.js"   charset="UTF-8"></script>
+
+        <script src="scripts/c7192975.scripts.js"  charset="UTF-8"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿
+<HTML xmlns="http://www.w3.org/1999/xhtml" charset="UTF-8">
+<HEAD>
+<META name="GENERATOR" content="MSHTML 10.00.9200.17148">
+<SCRIPT language="javascript" src="css/jquery-1.8.3.min.js" type="text/javascript" charset="UTF-8"></SCRIPT>
+<!--  浮动英文跳起 -->
+<SCRIPT language="javascript" src="css/nav.js" type="text/javascript" charset="UTF-8"></SCRIPT>
+
+<script>
+function fullScreen() {
+    alert("fullscreen");
+    var el = document.documentElement;
+    var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen;
+
+    if (typeof rfs != "undefined" && rfs) {
+        rfs.call(el);
+    } else if (typeof window.ActiveXObject != "undefined") {
+        // for Internet Explorer
+        var wscript = new ActiveXObject("WScript.Shell");
+        if (wscript != null) {
+            wscript.SendKeys("{F11}");
+        }
+    }
+
+}
+</script>
+<STYLE>
+.clearfix{ clear:both;}
+.fr{ float:right;}
+.fl{ float:left;}
+a{ text-decoration:none;}
+
+#nav .waibu {
+	text-align:center;
+	height:29px;
+	position:absolute;
+	left:1px;
+	top:1px;
+
+}
+
+#nav .waibu li {
+    float: left;
+    position: relative;
+    display: inline ;
+}
+
+#nav li a {
+    color: #544b4b;
+    display: block;
+    float: none;
+    font-size:16px;
+    height: 31px;
+    line-height: 30px;
+    outline: medium none;
+    position: relative;
+    width: 150px;
+	background:url(css/php_bg_back.jpg)  repeat;
+	padding-top:20px;
+}
+
+.new_nav2 a:hover{ background:url(css/php_bg_back.jpg) repeat;}
+#nav li a:hover{ background:url(css/nav02.jpg) repeat; color:#FFFFFF;}
+
+.new_nav2 a:hover span{ color:#0fffff;}
+#nav li a:hover span{ color:#ffffff;}
+
+#nav li a span {
+    color: #544b4b;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    line-height: 12px;
+    padding-bottom: 10px;
+    position: relative;
+    width: 150px;
+}
+
+</STYLE>
+</HEAD> 
+<BODY charset="UTF-8">
+<DIV class="nav" id="nav" >
+<UL class="waibu">
+  <LI class="new_nav"><A  target="mainFrame"  ondblclick="window.open('/grid','_top','fullscreen=yes')"  href="/grid">大屏幕实时看板<BR><SPAN>Big Screen Board</SPAN></A></LI>
+  <DIV class="n"></DIV>
+  <LI class="new_nav"><A  target="mainFrame"  ondblclick="window.open('/dashboard/dist/#/dashboard/db/dashboard','_top','fullscreen=yes')"  href="/dashboard/dist/#/dashboard/db/dashboard">实时仪表盘<BR><SPAN>Dash Board</SPAN></A></LI>
+  <DIV class="n"></DIV>
+  <LI class="new_nav"><A  target="mainFrame"  href="/kanban">任务排产<BR><SPAN>Stask Plan</SPAN></A></LI>
+  <DIV class="n"></DIV>
+  <LI class="new_nav"><A  target="mainFrame"  href="/device">设备状态管理<BR><SPAN>Plan Relevance</SPAN></A></LI>
+  <DIV class="n"></DIV>
+  <LI class="new_nav"><A  target="mainFrame"  href="/reports">统计报表<BR><SPAN>KPI Report</SPAN></A></LI>
+  <DIV class="n"></DIV>
+  <LI class="new_nav"><A  target="mainFrame"  href="/systemadmin">系统管理<BR><SPAN>System Manage</SPAN></A></LI>
+  <DIV class="n"></DIV>
+  <LI class="new_nav"><A  target="_top"  href="index.html">退出登录<BR><SPAN>Exit Login</SPAN></A></LI>
+  <DIV class="n"></DIV>
+  <LI id="new_nav2"><A><BR><SPAN></SPAN></a></LI>
+  <DIV class="n"></DIV>
+</UL>
+</DIV>
+</BODY>
+</HTML>

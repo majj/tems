@@ -1,0 +1,444 @@
+.con {
+	background: url("../images/h1_bg.gif") no-repeat 22px top;
+}
+.course {
+	border: 1px solid rgb(204, 204, 204); width: 963px; height: auto; margin-top: 8px; margin-bottom: 36px;
+}
+.weizhi {
+	background: url("weizhi_bg.gif") no-repeat 22px bottom; height: 28px; padding-top: 16px; padding-left: 49px; font-size: 12px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.course .left {
+	padding-right: 38px; padding-left: 47px; float: left;
+}
+.class-1 h1 {
+	height: 43px; color: rgb(17, 17, 17); line-height: 43px; font-size: 16px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.class-1 p.time {
+	height: 31px; color: rgb(51, 51, 51); line-height: 31px; font-size: 12px;
+}
+.class-1 p.time span {
+	color: rgb(102, 102, 102); font-size: 12px;
+}
+.class-1 p.dd {
+	background: url("../img/dd-bg.gif") repeat-x; border: 1px solid rgb(188, 188, 188); height: 30px; line-height: 30px; font-size: 12px; margin-top: 17px; margin-bottom: 17px;
+}
+.class-1 p.dd span.aa {
+	background: url("../img/biao-1.gif") no-repeat 8px; padding-left: 29px; font-weight: bold;
+}
+.class-1 p.dd span.bb {
+	background: url("../img/biao-2.gif") no-repeat left; color: rgb(102, 102, 102); padding-left: 18px; margin-left: 320px !important;
+}
+.class-1 .shiji {
+	width: 175px; height: 165px; float: left;
+}
+.class-1 p.text-jieshao {
+	width: 371px; text-align: justify; line-height: 17px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin-left: 15px; float: left;
+}
+.course .right {
+	background: url("../img/right-bg.gif") repeat-y; width: 312px; padding-top: 26px; padding-bottom: 40px; float: left;
+}
+.course .right dl {
+	margin: 0px auto; width: 252px; font-size: 12px;
+}
+.course .right dl dt {
+	height: 40px; font-size: 14px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.course .right dl.dl-aa {
+	margin-bottom: 39px;
+}
+.course .right dl.dl-aa dd {
+	height: 20px; letter-spacing: 1px; padding-top: 10px; padding-left: 20px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.course .right dl.dl-bb dd {
+	width: 100px; height: 22px; line-height: 26px; letter-spacing: 1px; padding-top: 15px; padding-left: 5px; float: left;
+}
+.course .right dl.dl-bb dd img {
+	padding-left: 15px;
+}
+.course .right dl dd a {
+	color: rgb(0, 0, 0);
+}
+.course .right1 {
+	background: url("../img/right-bg.gif") repeat-y; width: 312px; padding-top: 26px; padding-bottom: 425px; float: left;
+}
+.course .right1 dl {
+	margin: 0px auto; width: 252px; font-size: 12px;
+}
+.course .right1 dl dt {
+	height: 40px; font-size: 14px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.course .right1 dl.dl-aa {
+	margin-bottom: 39px;
+}
+.course .right1 dl.dl-aa dd {
+	height: 20px; letter-spacing: 1px; padding-top: 10px; padding-left: 20px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.course .right1 dl.dl-bb dd {
+	width: 100px; height: 22px; line-height: 26px; letter-spacing: 1px; padding-top: 15px; padding-left: 5px; float: left;
+}
+.course .right1 dl.dl-bb dd img {
+	padding-left: 15px;
+}
+.course .right1 dl dd a {
+	color: rgb(0, 0, 0);
+}
+.teacher img {
+	width: 208px; height: 202px;
+}
+.about {
+	border: 1px solid rgb(204, 204, 204); width: 963px; padding-bottom: 50px; font-family: "宋体"; font-size: 12px; margin-top: 8px; margin-bottom: 36px; box-shadow: 5px 5px 10px #000000;
+}
+.about p.weizhi {
+	height: 28px; padding-top: 16px; padding-left: 49px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.about h2 {
+	margin: 45px auto 0px; width: 870px; padding-bottom: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.about h3 {
+	width: 48px; margin-top: 23px; margin-right: 20px; margin-left: 53px; float: left; display: inline;
+}
+.about dl {
+	width: 793px; line-height: 20px; float: left;
+}
+.about dl dt {
+	height: 25px; line-height: 25px; font-weight: bold; margin-top: 23px;
+}
+.about dl dd {
+	
+}
+.about ol {
+	width: 793px; line-height: 20px; margin-top: 23px; float: left;
+}
+.about ul {
+	width: 793px; line-height: 20px; margin-top: 23px; float: left;
+}
+.studio {
+	border: 1px solid rgb(204, 204, 204); width: 963px; padding-bottom: 50px; font-family: "宋体"; font-size: 12px; margin-top: 8px; margin-bottom: 36px; box-shadow: 5px 5px 10px #000000;
+}
+.studio p.weizhi {
+	height: 28px; padding-top: 16px; padding-left: 49px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.studio h2 {
+	margin: 45px auto 0px; width: 870px; padding-bottom: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.studio ul li {
+	margin: 22px auto; width: 870px; color: rgb(113, 113, 113); line-height: 20px; font-size: 12px;
+}
+.studio h5 {
+	margin: 49px auto 0px; width: 454px; height: 479px; line-height: 20px;
+}
+.teachers {
+	border: 1px solid rgb(204, 204, 204); width: 963px; font-family: "宋体"; font-size: 12px; margin-top: 8px; margin-bottom: 36px; box-shadow: 5px 5px 10px #000000;
+}
+.teachers .left {
+	width: 547px; margin-left: 35px; float: left;
+}
+.teachers p.weizhi {
+	height: 28px; padding-top: 16px; padding-left: 49px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.teacher h3 {
+	width: 208px; margin-top: 20px; margin-right: 10px; float: left;
+}
+.teacher ul {
+	width: 314px; margin-top: 20px; margin-bottom: 20px; margin-left: 15px; float: left;
+}
+.teacher ul li {
+	text-align: justify; line-height: 20px; font-family: Arial, Helvetica, sans-serif; -ms-text-justify: inter-ideograph;
+}
+.teacher ul li img {
+	margin-left: 197px;
+}
+.teacher ul li span {
+	font-weight: bold;
+}
+.teacher ul li.ss {
+	height: 25px; line-height: 25px; font-size: 14px; margin-bottom: 10px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.teachers .right {
+	background: url("../img/right-bg.gif") repeat-y; width: 312px; padding-top: 26px; padding-bottom: 300px; margin-left: 34px; float: left;
+}
+.teachers .right dl {
+	margin: 0px auto; width: 252px; font-size: 12px;
+}
+.teachers .right dl dt {
+	height: 40px; font-size: 14px; font-weight: bold; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.teachers .right dl.dl-aa {
+	margin-bottom: 39px;
+}
+.teachers .right dl.dl-aa dd {
+	height: 20px; padding-top: 10px; padding-left: 15px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.teachers .right dl.dl-bb dd {
+	width: 100px; height: 22px; line-height: 26px; letter-spacing: 1px; padding-top: 15px; padding-left: 5px; float: left;
+}
+.teachers .right dl.dl-bb dd img {
+	padding-left: 15px;
+}
+.teachers .right dl dd a {
+	color: rgb(0, 0, 0);
+}
+ul.fenye {
+	
+}
+ul.fenye li {
+	padding: 2px 6px; border: 1px solid rgb(191, 191, 191); text-align: center; line-height: 21px; overflow: hidden; margin-right: 5px; float: left;
+}
+ul.fenye li span {
+	text-align: center; line-height: 21px; overflow: hidden; display: block;
+}
+ul.fenye li a {
+	background: url("../img/numbg.jpg") no-repeat; text-align: center; line-height: 21px; overflow: hidden; display: block;
+}
+.contlist-num ul li a:visited {
+	background: url("../img/numbg.jpg") no-repeat; text-align: center; line-height: 21px; overflow: hidden; display: block;
+}
+ul.fenye li.thisclass a {
+	color: red;
+}
+ul.fenye li a:hover {
+	
+}
+ul.fenye li.pp {
+	background: url("../img/num-nextbg.jpg") no-repeat; width: 52px; height: 21px; text-align: center; line-height: 21px; overflow: hidden;
+}
+ul.fenye li.pp a {
+	width: 52px; height: 21px; text-align: center; line-height: 21px; display: block; white-space: nowrap;
+}
+.contlist-num ul li.pp a:visited {
+	width: 52px; height: 21px; text-align: center; line-height: 21px; display: block; white-space: nowrap;
+}
+.design {
+	border: 1px solid rgb(204, 204, 204); width: 963px; padding-bottom: 30px; font-family: "宋体"; font-size: 12px; margin-top: 8px; margin-bottom: 36px; box-shadow: 5px 5px 10px #000000;
+}
+.design p.weizhi {
+	height: 28px; padding-top: 16px; padding-left: 49px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.design h2 {
+	margin: 45px auto 0px; width: 870px; padding-bottom: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.design h2 span {
+	height: 30px; line-height: 30px; font-size: 12px; margin-left: 703px;
+}
+.design ul {
+	margin: 0px auto; width: 870px;
+}
+.design ul li {
+	width: 265px; text-align: center; margin-top: 10px; margin-right: 25px; float: left;
+}
+.design ul li span {
+	height: 30px; line-height: 30px;
+}
+.design ul li img {
+	width: 256px; height: 192px;
+}
+.design2 {
+	border: 1px solid rgb(204, 204, 204); width: 963px; height: 840px; padding-bottom: 30px; font-family: "宋体"; font-size: 12px; margin-top: 8px; margin-bottom: 36px; box-shadow: 5px 5px 10px #000000;
+}
+.design2 p.weizhi {
+	height: 28px; padding-top: 16px; padding-left: 49px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.design2 h2 {
+	margin: 45px auto 0px; width: 870px; padding-bottom: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.design2 h2 span {
+	font-size: 12px; margin-top: -28px; float: right;
+}
+.design2 h2 span img {
+	margin-left: -7px;
+}
+.design2 .left-design {
+	width: 413px; margin-top: 8px; margin-left: 45px; float: left;
+}
+.design2 .left-design img {
+	width: 414px; height: 485px;
+}
+.design2 .left-design ul {
+	background: rgb(226, 226, 226); padding: 11px; width: 392px; color: rgb(81, 81, 81); font-size: 12px; margin-top: 5px;
+}
+.design2 .left-design ul li {
+	line-height: 16px; margin-bottom: 17px;
+}
+.design21 {
+	border: 1px solid rgb(204, 204, 204); width: 963px; height: 938px; padding-bottom: 30px; font-family: "宋体"; font-size: 12px; margin-top: 8px; margin-bottom: 36px; box-shadow: 5px 5px 10px #000000;
+}
+.design21 p.weizhi {
+	height: 28px; padding-top: 16px; padding-left: 49px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.design21 h2 {
+	margin: 45px auto 0px; width: 870px; padding-bottom: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.design21 h2 span {
+	font-size: 12px; margin-top: -28px; float: right;
+}
+.design21 h2 span img {
+	margin-left: -7px;
+}
+.design21 .left-design1 {
+	width: 413px; margin-top: 8px; margin-left: 45px; float: left;
+}
+.design21 .left-design1 img {
+	width: 413px; height: 207px;
+}
+.design21 .left-design1 ul {
+	background: rgb(226, 226, 226); padding: 11px; width: 392px; color: rgb(81, 81, 81); font-size: 12px; margin-top: 5px;
+}
+.design21 .left-design1 ul li {
+	line-height: 16px; margin-bottom: 17px;
+}
+.employment {
+	border: 1px solid rgb(204, 204, 204); width: 963px; padding-bottom: 80px; font-family: "宋体"; font-size: 12px; margin-top: 8px; margin-bottom: 36px; box-shadow: 5px 5px 10px #000000;
+}
+.employment p.weizhi {
+	height: 28px; padding-top: 16px; padding-left: 49px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.employment h2 {
+	margin: 45px auto 0px; width: 870px; padding-bottom: 5px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.employment ul {
+	margin: 0px auto; width: 870px;
+}
+.employment ul.ak {
+	margin: 0px auto; width: 870px; padding-left: 115px;
+}
+.employment ul li {
+	padding: 2px; border: 1px solid rgb(204, 204, 204); width: 157px; text-align: center; margin-top: 35px; margin-right: 11px; float: left; box-shadow: 2px 2px 5px #000000;
+}
+.employment ul li span {
+	height: 25px; text-align: center; color: rgb(116, 116, 116); line-height: 25px;
+}
+.employment ul li img {
+	width: 154px; height: 184px;
+}
+.employment h3 {
+	margin: 40px 20px 0px 38px; width: 58px; float: left;
+}
+.employment table {
+	border: 1px solid rgb(204, 204, 204); margin-top: 40px; float: left;
+}
+.employment table td {
+	height: 32px; text-align: left; line-height: 32px; padding-left: 30px; border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-right-width: 1px; border-bottom-width: 1px; border-right-style: solid; border-bottom-style: solid;
+}
+.employment table .tr-bt {
+	font-weight: bold;
+}
+ul.ak li {
+	padding: 2px 6px; border: 1px solid rgb(191, 191, 191); width: 37px; text-align: center; line-height: 21px; overflow: hidden; margin-right: 5px; float: left;
+}
+ul.ak li a {
+	text-align: center; line-height: 21px; overflow: hidden; display: block;
+}
+.contlist-num ul li a:visited {
+	text-align: center; line-height: 21px; overflow: hidden; display: block;
+}
+ul.ak li.thisclass a {
+	color: rgb(255, 0, 0);
+}
+.contlist-leftbar {
+	width: 950px; padding-top: 10px; padding-bottom: 30px; padding-left: 8px;
+}
+.weizhiBox {
+	height: 28px; padding-top: 16px; padding-left: 32px; font-size: 12px; border-top-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-left-color: rgb(188, 188, 188); border-top-width: 1px; border-right-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-left-style: solid;
+}
+.contlistcont {
+	border: 1px solid rgb(215, 215, 215); padding-bottom: 25px; font-size: 12px;
+}
+.contlistcont h3.contlistcont-topbg {
+	background: url("../img/contlisth3.jpg") repeat-x; height: 30px;
+}
+.num1 {
+	margin: 21px 0px 20px;
+}
+.num2 {
+	margin: 20px 0px 65px;
+}
+.fenye {
+	
+}
+.fenye ul {
+	
+}
+.fenye ul li {
+	padding: 2px 6px; border: 1px solid rgb(191, 191, 191); text-align: center; line-height: 21px; overflow: hidden; margin-right: 5px; float: left;
+}
+.fenye ul li span {
+	text-align: center; line-height: 21px; overflow: hidden; display: block;
+}
+.fenye ul li a {
+	background: url("../img/numbg.jpg") no-repeat; text-align: center; line-height: 21px; overflow: hidden; display: block;
+}
+.contlist-num ul li a:visited {
+	background: url("../img/numbg.jpg") no-repeat; text-align: center; line-height: 21px; overflow: hidden; display: block;
+}
+.fenye ul li.thisclass a {
+	color: rgb(255, 0, 0);
+}
+.fenye ul li a:hover {
+	
+}
+.fenye ul li.pp {
+	background: url("../img/num-nextbg.jpg") no-repeat; width: 52px; height: 21px; text-align: center; line-height: 21px; overflow: hidden;
+}
+.fenye ul li.pp a {
+	width: 52px; height: 21px; text-align: center; line-height: 21px; display: block; white-space: nowrap;
+}
+.contlist-num ul li.pp a:visited {
+	width: 52px; height: 21px; text-align: center; line-height: 21px; display: block; white-space: nowrap;
+}
+.contlist-line {
+	height: 1px; overflow: hidden; margin-bottom: 22px; border-top-color: rgb(215, 215, 215); border-top-width: 1px; border-top-style: solid;
+}
+.contlist-dashed {
+	background: url("../img/contlist-news-line.jpg") repeat-x; margin: 36px 30px 0px; height: 1px; overflow: hidden;
+}
+ul.contlist-news {
+	margin: 27px 33px 0px 30px;
+}
+.fenye {
+	margin: 27px auto; width: 700px;
+}
+ul.contlist-news li {
+	height: 24px; line-height: 24px; overflow: hidden; font-size: 12px;
+}
+ul.contlist-news li em {
+	color: rgb(124, 124, 124); font-size: 13px; font-style: normal; float: right;
+}
+ul.contlist-news li span {
+	
+}
+ul.contlist-news li span b {
+	color: rgb(102, 61, 39); font-weight: lighter; margin-right: 10px;
+}
+ul.contlist-news li span a {
+	color: rgb(51, 51, 51);
+}
+ul.contlist-news li span a:visited {
+	color: rgb(51, 51, 51);
+}
+ul.contlist-news li span a:hover {
+	color: rgb(255, 127, 0);
+}
+ul.contlist-news li.contlist-news-line {
+	background: url("../img/contlist-news-line.jpg") repeat-x center; margin: 3px 0px 5px; height: 23px;
+}
+.contlist-rightbar {
+	width: 200px;
+}
+.article-title {
+	width: 915px; padding-top: 45px; padding-left: 47px; float: left;
+}
+.course p.weizhi1 {
+	height: 50px; padding-top: 16px; padding-left: 47px; font-size: 12px; border-bottom-color: rgb(188, 188, 188); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.course p.weizhi1 b {
+	width: 400px; height: 39px; line-height: 40px; font-weight: normal; float: left; display: block;
+}
+.course p.weizhi1 span {
+	float: left;
+}
+.article-title h1 {
+	height: 43px; color: rgb(17, 17, 17); line-height: 43px; font-size: 16px; border-bottom-color: rgb(153, 153, 153); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.article-edit {
+	padding: 30px 47px 30px 35px; line-height: 25px; font-size: 12px; float: left;
+}

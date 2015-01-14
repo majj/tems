@@ -1,0 +1,54 @@
+.bottom {
+	background: rgb(231, 231, 231); margin: 0px auto; width: 965px; padding-top: 8px; font-size: 12px;
+}
+.bottom dl {
+	width: 230px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; float: left;
+}
+.bottom .dl-a {
+	padding-left: 38px;
+}
+.bottom dl dt {
+	background: url("../img/bottom-dt-bg.gif") repeat-x left bottom; color: rgb(71, 71, 71); line-height: 22px; padding-bottom: 3px; font-size: 14px; font-weight: bold; margin-bottom: 2px;
+}
+.bottom dl dd {
+	overflow: hidden;
+}
+.bottom dl dd a {
+	height: 21px; color: rgb(117, 121, 124); line-height: 21px; padding-right: 38px; font-size: 12px;
+}
+.bottom dl a {
+	color: rgb(0, 0, 0);
+}
+.bottom dl a:hover {
+	
+}
+.bottom p {
+	background: url("../img/di-bg.gif") repeat-x left top; height: 42px; text-align: center; line-height: 42px; font-family: Arial, Helvetica, sans-serif; margin-top: 19px; z-index: 1;
+}
+.foot {
+	background: rgb(70, 70, 70); text-align: center; line-height: 17px; padding-bottom: 20px; font-size: 12px; margin-top: -20px;
+}
+.foot p {
+	height: 28px; text-align: center; color: rgb(211, 211, 211); line-height: 28px;
+}
+p.p111 {
+	padding-top: 28px; font-size: 12px;
+}
+p.p222 {
+	font-size: 12px;
+}
+.di {
+	position: relative; z-index: 100;
+}
+#di {
+	background: url("../images/bottom_1.gif") repeat-x left top; width: 100%; height: 42px; line-height: 42px; font-family: "Î¢ÈíÑÅºÚ"; margin-top: 10px; position: relative; z-index: 100;
+}
+#di ul li {
+	color: rgb(255, 255, 255); margin-right: 7px; margin-left: 7px; float: left; display: inline;
+}
+#di ul li a {
+	color: rgb(255, 255, 255); font-size: 12px;
+}
+.shuxian img {
+	margin-top: 14px;
+}

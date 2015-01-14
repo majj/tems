@@ -26,3 +26,17 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# HTML
+components
+bower_components
+libs
+dist
+src
+
+fonts
+
+# image
+*.jpg
+*.png
+*.gif

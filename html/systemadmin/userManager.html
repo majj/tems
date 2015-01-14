@@ -1,0 +1,115 @@
+﻿
+<br>
+<div  ng-controller="usermanagerctrl">
+	<div class="input-group pull-right global-search"  >
+	  <label class="input-group-addon">全局搜索</label>
+	  <input type="text" class="form-control" ng-model="vm.filter.$"/>
+	</div>
+
+	<table class="table table-bordered table-hover">
+	  <thead>
+	  <tr>
+	    <td style="width:60px;text-align:center;" ng-repeat="column in vm.columns" ng-if="!column.hidden" ng-click="vm.sort.toggle(column);" ng-class="{sortable: column.sortable !== false}">
+	      <span  ng-click="editrole(column);">{{column.label}}</span>
+	      <i ng-if="column.name === vm.sort.column && vm.sort.direction" class="glyphicon {{vm.sort.direction|orderClass}}"></i>
+	      <a href="#"  ng-click="addrole()"><i ng-if="vm.columns[vm.columns.length-1].label == column.label" class="glyphicon glyphicon-plus" style="float:right;"></i></a>
+	    </td>
+	  </tr>
+	  </thead>
+	  <tbody>
+	  <tr ng-repeat="item in vm.items|filter:vm.filter|orderBy:vm.sort.column:vm.sort.direction===-1|paging:vm.page.index:vm.page.size">
+	    <td class="text-center" style="width:80px;">{{item.username}}
+	        <span class="btn btn-primary btn-xs pull-right" ng-mouseenter="item.popover=true"
+	              ng-mouseleave="item.popover=false"><i class="glyphicon glyphicon-comment"></i></span>
+	      <div class="relative">
+	        <div class="popover" ng-style="{display: item.popover?'block':'none'}">
+	          <div class="popover-title">
+	            {{item.username}} - {{item.depart}}
+	          </div>
+	          <div class="popover-content">
+	            姓名：{{item.username}}<br/>
+	            部门：{{item.depart}}<br/>
+	            职务：{{item.busslevel}}<br/>
+	          </div>
+	        </div>
+	      </div>
+	    </td>
+	    <td class="text-center">
+	      <span ng-if="!item.$editing">{{item.depart}}</span>
+	    </td>
+	    <td class="text-center">
+	      <span ng-if="!item.$editing">{{item.busslevel}}</span>
+	    </td>
+	    <td  ng-repeat="volpri in item.privs  track by $index" class="text-center">
+	      <input type="checkbox"  ng-checked="volpri" />
+	    </td>
+	  </tr>
+	  </tbody>
+	</table>
+	<div class="row">
+	  <div class="col-md-3">
+	    <select ng-model="vm.page.size" class="form-control" title="每页条目数"
+	            ng-options="pageSize for pageSize in [10, 20]">
+	    </select>
+	  </div>
+	  <div class="col-md-9">
+	    <pagination total-items="vm.items|filter:vm.filter|size"  ng-model="vm.page.index" max-size="5"
+	                items-per-page="vm.page.size" class="pagination-sm pull-right" boundary-links="true"></pagination>
+	  </div>
+	</div>
+	<div  ng-show="roleeditenable" style="position:relative;margin:10px;padding:10px;border:2px;border:1px solid black;height:250px;">
+		<div style="position:relative;width:100%;text-align:left" class="btn btn-primary">{{currentrole.rolename}}<input style="color:#000" type="text" ng-show="currentrole.rolename==''" ng-model="tempvalue" ng-blur="currentrole.rolename=tempvalue;refreshrole(tempvalue);" /><div style="color:#000;float:right" ng-click="deleterole(currentrole.rolename);" class="glyphicon glyphicon-trash"/></div></div>
+		<div   style="position:relative;width:240px;margin:0px 10px 0px 0px; float:left">
+			<table>
+				<tr><td>{{vm.roledefin.prv001}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv001" /></td></tr>
+				<tr><td>{{vm.roledefin.prv002}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv002" /></td></tr>
+				<tr><td>{{vm.roledefin.prv003}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv003" /></td></tr>
+				<tr><td>{{vm.roledefin.prv004}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv004" /></td></tr>
+				<tr><td>{{vm.roledefin.prv005}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv005" /></td></tr>
+				<tr><td>{{vm.roledefin.prv006}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv006" /></td></tr>
+				<tr><td>{{vm.roledefin.prv007}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv007" /></td></tr>
+				<tr><td>{{vm.roledefin.prv008}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv008" /></td></tr>
+				<tr><td>{{vm.roledefin.prv009}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv009" /></td></tr>
+			</table>
+		</div>
+		<div   style="position:relative;width:240px;margin:0px 10px 0px 0px; float:left">
+			<table>
+				<tr><td>{{vm.roledefin.prv010}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv010" /></td></tr>
+				<tr><td>{{vm.roledefin.prv011}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv011" /></td></tr>
+				<tr><td>{{vm.roledefin.prv012}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv012" /></td></tr>
+				<tr><td>{{vm.roledefin.prv013}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv013" /></td></tr>
+				<tr><td>{{vm.roledefin.prv014}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv014" /></td></tr>
+				<tr><td>{{vm.roledefin.prv015}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv015" /></td></tr>
+				<tr><td>{{vm.roledefin.prv016}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv016" /></td></tr>
+				<tr><td>{{vm.roledefin.prv017}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv017" /></td></tr>
+				<tr><td>{{vm.roledefin.prv018}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv018" /></td></tr>
+			</table>
+		</div>
+		<div   style="position:relative;width:240px;margin:0px 10px 0px 0px; float:left">
+			<table>
+				<tr><td>{{vm.roledefin.prv019}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv019" /></td></tr>
+				<tr><td>{{vm.roledefin.prv020}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv020" /></td></tr>
+				<tr><td>{{vm.roledefin.prv021}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv021" /></td></tr>
+				<tr><td>{{vm.roledefin.prv022}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv022" /></td></tr>
+				<tr><td>{{vm.roledefin.prv023}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv023" /></td></tr>
+				<tr><td>{{vm.roledefin.prv024}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv024" /></td></tr>
+				<tr><td>{{vm.roledefin.prv025}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv025" /></td></tr>
+				<tr><td>{{vm.roledefin.prv026}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv026" /></td></tr>
+				<tr><td>{{vm.roledefin.prv027}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv027" /></td></tr>
+			</table>
+		</div>
+		<div   style="position:relative;width:240px;margin:0px 10px 0px 0px; float:left">
+			<table>
+				<tr><td>{{vm.roledefin.prv028}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv028" /></td></tr>
+				<tr><td>{{vm.roledefin.prv029}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv029" /></td></tr>
+				<tr><td>{{vm.roledefin.prv030}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv030" /></td></tr>
+				<tr><td>{{vm.roledefin.prv031}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv031" /></td></tr>
+				<tr><td>{{vm.roledefin.prv032}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv032" /></td></tr>
+				<tr><td>{{vm.roledefin.prv033}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv033" /></td></tr>
+				<tr><td>{{vm.roledefin.prv034}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv034" /></td></tr>
+				<tr><td>{{vm.roledefin.prv035}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv035" /></td></tr>
+				<tr><td>{{vm.roledefin.prv036}}</td><td><input type="checkbox" ng-model="currentrole.prvitem.prv036" /></td></tr>
+			</table>
+		</div>
+	</div>
+</div>
